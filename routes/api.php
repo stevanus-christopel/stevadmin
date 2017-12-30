@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\stv_content;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('stv_contents', 'stv_contentsController@index');
+ 
+Route::get('stv_contents/{stv_content}', 'stv_contentsController@show');
+ 
+Route::post('stv_contents','stv_contentsController@store');
+ 
+Route::put('stv_contents/{stv_content}','stv_contentsController@update');
+ 
+Route::delete('stv_contents/{stv_content}', 'stv_contentsController@delete');

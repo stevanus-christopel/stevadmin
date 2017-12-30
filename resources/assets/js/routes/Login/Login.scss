@@ -1,0 +1,38 @@
+.login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(60deg, $waterLeaf 0%, $sweetCorn 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+
+    &__box {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        padding: 24px;
+        background-color: $white;
+        border-radius: 4px;
+        margin-top: -64px;
+
+        & p {
+            color: $boulder;
+        }
+
+        & .button {
+            width: 100px;
+            float: right;
+            margin-bottom: 16px;
+        }
+    }
+
+    &__author {
+        display: block;
+        text-align: center;
+        clear: both;
+    }
+}

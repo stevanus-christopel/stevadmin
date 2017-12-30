@@ -1,6 +1,6 @@
 # stevadmin
 
-**stevadmin** is a flexible custom admin page for managing content of your website.
+**stevadmin** is a flexible content management for your website.
 
 It's easy to configure yet powerful. It's built on React JS, Laravel and MySQL.
 

@@ -1,0 +1,36 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    color: $tundora;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 22px;
+}
+
+h1 {
+    font-size: 44px;
+    line-height: 56px;
+}
+
+h2 {
+    font-size: 32px;
+    line-height: 36px;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 28px;
+}
+
+small {
+    font-size: 10px;
+    line-height: 10px;
+}
+
+a {
+    text-decoration: initial;
+    color: $teal;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

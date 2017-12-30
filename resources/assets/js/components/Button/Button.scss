@@ -1,0 +1,32 @@
+.button {
+    border: none;
+    border-radius: 4px;
+    background-color: $teal;
+    color: $white;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    &--large {
+        font-size: 17px;
+        line-height: 32px;
+        height: 48px;
+    }
+
+    &--medium {
+        font-size: 14px;
+        line-height: 24px;
+        height: 40px;
+    }
+
+    &--small {
+        font-size: 11px;
+        line-height: 16px;
+        height: 32px;
+    }
+}
