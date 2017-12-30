@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 //  Components
 import Button from '../../components/Button';
+import Select from '../../components/Select';
 import TextInput from '../../components/TextInput';
 
 class Content extends PureComponent {
@@ -39,12 +40,15 @@ class Content extends PureComponent {
 
         return (
             <div className="content">
-                <h2>Website Content</h2>
                 <div className="content__filter">
+                    <Select items={[
+                        { name: "All Page", value: "all" }
+                    ]} />
                     <TextInput type="text"
                         placeholder="Search here..." value={page}
                         onChange={this.handleChangePage}
                         onKeyPress={this.handleKeyPressSearch} />
+                    <Button medium onClick={this.handleSearch} disabled={isLoading}>Search</Button>
                 </div>
             </div>
         );

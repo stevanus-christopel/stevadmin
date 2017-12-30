@@ -269,6 +269,24 @@ a:hover {
   cursor: not-allowed;
 }
 
+.select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 8px;
+  padding-left: 0;
+  margin: 16px 0;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 22px;
+  color: #484848;
+  border: none;
+  border-bottom: 1px solid #DBDBDB;
+  border-radius: 0;
+  outline: none;
+  background-color: #FFFFFF;
+}
+
 .text-input {
   padding: 8px;
   padding-left: 0;
@@ -302,8 +320,18 @@ a:hover {
   width: 100%;
 }
 
+.content__filter .button {
+  min-width: 100px;
+}
+
+.content__filter .select {
+  min-width: 200px;
+  margin-right: 16px;
+}
+
 .content__filter .text-input {
-  width: 200px;
+  min-width: 60%;
+  margin-right: 16px;
 }
 
 .home {

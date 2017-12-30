@@ -1,7 +1,17 @@
 .content {
     &__filter {
+        & .button {
+            min-width: 100px;
+        }
+
+        & .select {
+            min-width: 200px;
+            margin-right: 16px;
+        }
+
         & .text-input {
-            width: 200px;
+            min-width: 60%;
+            margin-right: 16px;
         }
     }
 }
