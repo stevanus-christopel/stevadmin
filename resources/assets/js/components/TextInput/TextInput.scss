@@ -1,16 +1,20 @@
 .text-input {
-    display: block;
     padding: 8px;
+    padding-left: 0;
     margin: 16px 0;
-    width: 100%;
     font-weight: 300;
     font-size: 17px;
     line-height: 22px;
     color: $tundora;
-    border: 1px solid $alto;
-    border-radius: 4px;
+    border: none;
+    border-bottom: 1px solid $alto;
 
     &::placeholder {
         opacity: 0.56;
+    }
+
+    &--block {
+        display: block;
+        width: 100%;
     }
 }

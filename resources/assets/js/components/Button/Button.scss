@@ -29,4 +29,13 @@
         line-height: 16px;
         height: 32px;
     }
+
+    &--disabled {
+        background-color: $alto;
+        color: $boulder;
+
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
 }

@@ -1,0 +1,7 @@
+.content {
+    &__filter {
+        & .text-input {
+            width: 200px;
+        }
+    }
+}

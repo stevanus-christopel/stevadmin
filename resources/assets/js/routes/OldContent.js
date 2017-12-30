@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 /* Stateless component or pure component
  * { product } syntax is the object destructing
  */
-const Content = ({content, onDelete}) => {
+const OldContent = ({content, onDelete}) => {
     
   const divStyle = {
       /*code omitted for brevity */
@@ -29,4 +29,4 @@ const Content = ({content, onDelete}) => {
   )
 }
  
-export default Content ;
+export default OldContent ;

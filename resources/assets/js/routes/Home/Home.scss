@@ -1,0 +1,49 @@
+.home {
+    position: relative;
+    top: 0;
+    left: 0;    
+    min-height: 100%;
+    width: 100%;
+
+    &__header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 81px;
+        width: 100%;
+        padding: 8px 24px;
+        background-color: $white;
+        border-bottom: 1px solid $mercury;
+        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__logout {
+        color: $teal;
+    
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+
+    &__content {
+        padding: 24px;
+        padding-top: 105px;
+    }
+
+    &__footer {
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 59px;
+        margin-top: -59px;
+        width: 100%;
+        border-top: 1px solid $mercury;
+        padding: 24px;
+        text-align: right;
+    }
+}

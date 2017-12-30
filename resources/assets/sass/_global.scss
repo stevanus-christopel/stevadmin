@@ -1,9 +1,18 @@
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
     font-family: 'Nunito', sans-serif;
     color: $tundora;
     font-weight: 300;
     font-size: 17px;
     line-height: 22px;
+
+    & #root {
+        height: 100%;
+    }
 }
 
 h1 {

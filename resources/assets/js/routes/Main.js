@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import Content from './Content';
+import OldContent from './OldContent';
 import AddContent from './AddContent';
  
 /* Main Component */
@@ -125,7 +125,7 @@ class Main extends Component {
         <div>
             <AddContent onAdd={this.handleAddContent} />
            
-           <Content content={this.state.currentContent} onDelete={this.handleDelete} />
+           <OldContent content={this.state.currentContent} onDelete={this.handleDelete} />
 
             <div>
              <h3> All contents </h3>

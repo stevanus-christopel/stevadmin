@@ -14,6 +14,7 @@
         position: relative;
         width: 100%;
         max-width: 400px;
+        min-width: 300px;
         padding: 24px;
         background-color: $white;
         border-radius: 4px;
@@ -34,5 +35,18 @@
         display: block;
         text-align: center;
         clear: both;
+    }
+
+    &__loading {
+        padding-right: 116px;
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    &__error {
+        padding-right: 116px;
+        font-size: 12px;
+        line-height: 16px;
+        color: $persimmon;
     }
 }
