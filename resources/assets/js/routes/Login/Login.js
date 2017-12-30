@@ -98,7 +98,7 @@ class Login extends PureComponent {
                         placeholder="Password" value={password}
                         onChange={this.handleChangePassword}
                         onKeyPress={this.handleKeyPressPassword} />
-                    <Button medium onClick={this.handleLogin} disabled={isLoading}>Login</Button>
+                    <Button primary medium onClick={this.handleLogin} disabled={isLoading}>Login</Button>
 
                     {
                         (!error && isLoading) &&

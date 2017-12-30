@@ -1,17 +1,50 @@
 .content {
     &__filter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
         & .button {
             min-width: 100px;
         }
 
         & .select {
-            min-width: 200px;
+            min-width: 160px;
             margin-right: 16px;
         }
 
         & .text-input {
-            min-width: 60%;
+            min-width: 160px;
+            width: 100%;
             margin-right: 16px;
+        }
+    }
+
+    &__data {
+        &-item {
+            position: relative;
+            padding: 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid $alto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            & p {
+                margin-bottom: 8px;
+                font-size: 15px;
+                line-height: 18px;
+
+                &:first-child {
+                    font-weight: 400;
+                    font-size: 17px;
+                    line-height: 22px;
+                }
+            }
+        
+            & .button {
+                min-width: 100px;
+            }
         }
     }
 }

@@ -12,4 +12,12 @@
     border-radius: 0;
     outline: none;
     background-color: $white;
+
+    &--disabled {
+        color: $boulder;
+
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
 }

@@ -228,10 +228,10 @@ a:hover {
 }
 
 .button {
-  border: none;
+  border: 1px solid #008489;
   border-radius: 4px;
-  background-color: #008489;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #008489;
 }
 
 .button:hover {
@@ -240,6 +240,11 @@ a:hover {
 
 .button:focus {
   outline: 0;
+}
+
+.button--primary {
+  background-color: #008489;
+  color: #FFFFFF;
 }
 
 .button--large {
@@ -287,6 +292,14 @@ a:hover {
   background-color: #FFFFFF;
 }
 
+.select--disabled {
+  color: #767676;
+}
+
+.select--disabled:hover {
+  cursor: not-allowed;
+}
+
 .text-input {
   padding: 8px;
   padding-left: 0;
@@ -320,18 +333,71 @@ a:hover {
   width: 100%;
 }
 
+.text-input--disabled {
+  color: #767676;
+}
+
+.text-input--disabled:hover {
+  cursor: not-allowed;
+}
+
+.content__filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .content__filter .button {
   min-width: 100px;
 }
 
 .content__filter .select {
-  min-width: 200px;
+  min-width: 160px;
   margin-right: 16px;
 }
 
 .content__filter .text-input {
-  min-width: 60%;
+  min-width: 160px;
+  width: 100%;
   margin-right: 16px;
+}
+
+.content__data-item {
+  position: relative;
+  padding: 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #DBDBDB;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.content__data-item p {
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.content__data-item p:first-child {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 22px;
+}
+
+.content__data-item .button {
+  min-width: 100px;
 }
 
 .home {
@@ -361,6 +427,7 @@ a:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  z-index: 2;
 }
 
 .home__logout {
@@ -375,6 +442,7 @@ a:hover {
 .home__content {
   padding: 24px;
   padding-top: 105px;
+  padding-bottom: 75px;
 }
 
 .home__footer {
@@ -388,6 +456,7 @@ a:hover {
   border-top: 1px solid #E4E4E4;
   padding: 24px;
   text-align: right;
+  z-index: 2;
 }
 
 .login {

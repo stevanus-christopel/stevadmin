@@ -17,4 +17,12 @@
         display: block;
         width: 100%;
     }
+
+    &--disabled {
+        color: $boulder;
+        
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
 }

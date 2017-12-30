@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-//use App\stv_content;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +24,5 @@ use Illuminate\Http\Request;
 // Route::delete('stv_contents/{stv_content}', 'stv_contentsController@delete');
 
 Route::post('login','UsersController@login');
+Route::get('pages', 'ContentsController@pages');
+Route::get('contents', 'ContentsController@contents');
