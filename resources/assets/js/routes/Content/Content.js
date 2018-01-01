@@ -44,7 +44,7 @@ class Content extends PureComponent {
             return response.json();
         })
         .then(data => {
-            let pageItems = [{ name: 'All Pages', value: 'All Pages' }];
+            let pageItems = [];
             data.map(function(dataItem) {
                 pageItems.push({ name: dataItem.page, value: dataItem.page });
             });
@@ -96,33 +96,45 @@ class Content extends PureComponent {
         let { contents, currentContent, pageItems, page, search, isLoading, error } = this.state;
 
         return (
-            currentContent != null ?
-            <Display content={currentContent} onCancel={this.handleDisplayCancel} /> :
             <div className="content">
-                <div className="content__filter">
-                    <Select items={pageItems} disabled={isLoading} />
-                    <TextInput type="text"
-                        placeholder="Search here..." value={page} disabled={isLoading}
-                        onChange={this.handleChangePage}
-                        onKeyPress={this.handleKeyPressSearch} />
-                    <Button primary medium onClick={this.handleSearch} disabled={isLoading}>Search</Button>
-                </div>
-                <div className="content__data">
-                    {
-                        contents.map(function(content, index) {
-                            return (
-                                <div key={index} className="content__data-item">
-                                    <div>
-                                        <p><b>{ content.Page }</b> - { content.ContentCode }</p>
-                                        <p>Status: { content.IsActive === 1 ? "Active" : "Not Active" }</p>
-                                        <p>Last updated by { content.UpdatedBy } at { content.UpdatedAt }</p>
-                                    </div>
-                                    <Button medium onClick={() => this.handleDisplay(content)} disabled={isLoading}>Display</Button>
-                                </div>
-                            )
-                        }, this)
-                    }
-                </div>
+                {
+                    currentContent != null ?
+                    <Display pageItems={pageItems} content={currentContent}
+                        onCancel={this.handleDisplayCancel} /> :
+                    <div>
+                        <h2>Content List</h2>
+                        <div className="content__filter">
+                            <Select items={
+                                [{ name: 'All Pages', value: 'All Pages' },
+                                ...pageItems
+                                ]} disabled={isLoading} />
+                            <TextInput type="text"
+                                placeholder="Search here..." value={page} disabled={isLoading}
+                                onChange={this.handleChangePage}
+                                onKeyPress={this.handleKeyPressSearch} />
+                            <div className="content__filter-button">
+                                <Button primary medium onClick={this.handleSearch} disabled={isLoading}>Search</Button>
+                                <Button medium onClick={this.handleSearch} disabled={isLoading}>Add New Content</Button>
+                            </div>
+                        </div>
+                        <div className="content__data">
+                            {
+                                contents.map(function(content, index) {
+                                    return (
+                                        <div key={index} className="content__data-item">
+                                            <div>
+                                                <p><b>{ content.Page }</b> - { content.ContentCode }</p>
+                                                <p>Status: { content.IsActive === 1 ? "Active" : "Not Active" }</p>
+                                                <p>Last updated by { content.UpdatedBy } at { content.UpdatedAt }</p>
+                                            </div>
+                                            <Button small onClick={() => this.handleDisplay(content)} disabled={isLoading}>Edit</Button>
+                                        </div>
+                                    )
+                                }, this)
+                            }
+                        </div>
+                    </div>
+                }
             </div>
         );
     }

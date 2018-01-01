@@ -45,7 +45,7 @@ class Login extends PureComponent {
                 isLoading: true
             });
 
-            fetch('api/login/', {
+            fetch('api/contents/', {
                 method:'post',
                 headers: {
                     'Accept': 'application/json',
@@ -92,7 +92,7 @@ class Login extends PureComponent {
                     <h1>Welcome.</h1>
                     <p>Login to manage your website.</p>
                     
-                    <TextInput block type="text" placeholder="Username" value={username}
+                    <TextInput block autoFocus type="text" placeholder="Username" value={username}
                         onChange={this.handleChangeUsername} />
                     <TextInput block type="password"
                         placeholder="Password" value={password}

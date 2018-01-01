@@ -1,11 +1,16 @@
 .content {
+    max-width: 1080px;
+    margin: auto;
+
     &__filter {
         display: flex;
         align-items: center;
         justify-content: space-between;
         
         & .button {
-            min-width: 100px;
+            &:last-child {
+                margin-left: 8px;
+            }
         }
 
         & .select {
@@ -17,6 +22,13 @@
             min-width: 160px;
             width: 100%;
             margin-right: 16px;
+        }
+
+        &-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: nowrap;
         }
     }
 
@@ -37,31 +49,51 @@
             & p {
                 margin-bottom: 8px;
                 font-size: 15px;
-                line-height: 18px;
+                line-height: 16px;
 
                 &:first-child {
                     font-weight: 400;
-                    font-size: 17px;
-                    line-height: 22px;
+                    font-size: 19px;
+                    line-height: 24px;
+                }
+
+                &:last-child {
+                    color: $boulder;
+                    font-size: 12px;
                 }
             }
-        
-            & .button {
-                min-width: 100px;
+
+            & small {
+                color: $boulder;
             }
         }
     }
 
     &-display {
-        & p {
-            margin-bottom: 8px;
-            font-size: 15px;
-            line-height: 18px;
+        & h2 {
+            margin-bottom: 16px;
+        }
 
-            &:first-child {
-                font-weight: 400;
-                font-size: 17px;
-                line-height: 22px;
+        & table {
+            width: 100%;
+
+            & td {
+                padding: 16px 0;
+                padding-right: 16px;
+
+                &:first-child {
+                    width: 30%;
+                }
+
+                & .text-input {
+                    margin: 0;
+                    width: 100%;
+                }
+
+                & .select {
+                    margin: 0;
+                    width: 100%;
+                }
             }
         }
 
@@ -76,6 +108,41 @@
                     margin-right: 16px;
                 }
             }
+        }
+
+        &__loading {
+            margin-top: 16px;
+            text-align: right;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        &__error {
+            margin-top: 16px;
+            text-align: right;
+            font-size: 12px;
+            line-height: 16px;
+            color: $persimmon;
+        }
+    }
+}
+
+@media(max-width: 640px) {
+    .content__filter {
+        flex-direction: column;
+        align-items: flex-end;
+
+        & .select {
+            width: 100%;
+            margin-right: 0;
+        }
+
+        & .text-input {
+            margin-right: 0;
+        }
+
+        &-button {
+            margin: 16px 0;
         }
     }
 }

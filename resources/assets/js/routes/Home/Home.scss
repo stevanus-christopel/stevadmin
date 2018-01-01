@@ -50,3 +50,11 @@
         z-index: 2;
     }
 }
+
+@media(max-width: 640px) {
+    .home__content {
+        padding: 16px;
+        padding-top: 97px;
+        padding-bottom: 87px;
+    }
+}

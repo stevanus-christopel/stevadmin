@@ -3,6 +3,8 @@
     border-radius: 4px;
     background-color: $white;
     color: $teal;
+    padding: 0 16px;
+    white-space: nowrap;
 
     &:hover {
         cursor: pointer;
@@ -36,6 +38,7 @@
     }
 
     &--disabled {
+        border-color: $alto;
         background-color: $alto;
         color: $boulder;
 

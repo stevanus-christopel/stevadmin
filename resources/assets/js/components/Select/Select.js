@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const Select = props => {
-    const { disabled, items, onChange } = props;
+    const { disabled, items, value, onChange } = props;
 
     const classes = classNames(
         "select",
@@ -14,10 +14,11 @@ const Select = props => {
     )
 
     return (
-        <select className={classes} disabled={disabled}>
+        <select className={classes} disabled={disabled} value={value} onChange={onChange}>
             {
+                items &&
                 items.map(function(item, index) {
-                    return (<option key={index} selected={item.selected} value={item.value}>{item.name}</option>)
+                    return (<option key={index} value={item.value}>{item.name}</option>)
                 }, this)
             }
         </select>
