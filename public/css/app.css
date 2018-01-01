@@ -384,6 +384,10 @@ a:hover {
           justify-content: space-between;
 }
 
+.content__data-item:last-child {
+  border-bottom-color: transparent;
+}
+
 .content__data-item p {
   margin-bottom: 8px;
   font-size: 15px;
@@ -398,6 +402,31 @@ a:hover {
 
 .content__data-item .button {
   min-width: 100px;
+}
+
+.content-display p {
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.content-display p:first-child {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 22px;
+}
+
+.content-display__button {
+  margin-top: 16px;
+  text-align: right;
+}
+
+.content-display__button .button {
+  min-width: 100px;
+}
+
+.content-display__button .button:first-child {
+  margin-right: 16px;
 }
 
 .home {

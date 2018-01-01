@@ -22696,6 +22696,10 @@ var _reactDom = __webpack_require__(27);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _Display = __webpack_require__(204);
+
+var _Display2 = _interopRequireDefault(_Display);
+
 var _Button = __webpack_require__(87);
 
 var _Button2 = _interopRequireDefault(_Button);
@@ -22716,6 +22720,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+//  Routes
+
+
 //  Components
 
 
@@ -22730,6 +22737,7 @@ var Content = function (_PureComponent) {
         _this.state = {
             pageItems: [],
             contents: [],
+            currentContent: null,
             page: '',
             search: '',
             isLoading: false,
@@ -22741,6 +22749,9 @@ var Content = function (_PureComponent) {
         _this.handleChangePage = _this.handleChangePage.bind(_this);
         _this.handleChangeSearch = _this.handleChangeSearch.bind(_this);
         _this.handleKeyPressSearch = _this.handleKeyPressSearch.bind(_this);
+        _this.handleSearch = _this.handleSearch.bind(_this);
+        _this.handleDisplay = _this.handleDisplay.bind(_this);
+        _this.handleDisplayCancel = _this.handleDisplayCancel.bind(_this);
         return _this;
     }
 
@@ -22807,10 +22818,25 @@ var Content = function (_PureComponent) {
         key: 'handleSearch',
         value: function handleSearch() {}
     }, {
+        key: 'handleDisplay',
+        value: function handleDisplay(content) {
+            this.setState({
+                currentContent: content
+            });
+        }
+    }, {
+        key: 'handleDisplayCancel',
+        value: function handleDisplayCancel() {
+            this.setState({
+                currentContent: null
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _state = this.state,
                 contents = _state.contents,
+                currentContent = _state.currentContent,
                 pageItems = _state.pageItems,
                 page = _state.page,
                 search = _state.search,
@@ -22818,7 +22844,7 @@ var Content = function (_PureComponent) {
                 error = _state.error;
 
 
-            return _react2.default.createElement(
+            return currentContent != null ? _react2.default.createElement(_Display2.default, { content: currentContent, onCancel: this.handleDisplayCancel }) : _react2.default.createElement(
                 'div',
                 { className: 'content' },
                 _react2.default.createElement(
@@ -22838,10 +22864,12 @@ var Content = function (_PureComponent) {
                 _react2.default.createElement(
                     'div',
                     { className: 'content__data' },
-                    contents.map(function (content) {
+                    contents.map(function (content, index) {
+                        var _this4 = this;
+
                         return _react2.default.createElement(
                             'div',
-                            { className: 'content__data-item' },
+                            { key: index, className: 'content__data-item' },
                             _react2.default.createElement(
                                 'div',
                                 null,
@@ -22859,22 +22887,24 @@ var Content = function (_PureComponent) {
                                 _react2.default.createElement(
                                     'p',
                                     null,
-                                    'Last updated by ',
-                                    content.UpdatedBy,
-                                    ' at ',
-                                    content.UpdatedAt
+                                    'Status: ',
+                                    content.IsActive === 1 ? "Active" : "Not Active"
                                 ),
                                 _react2.default.createElement(
                                     'p',
                                     null,
-                                    'Status: ',
-                                    content.IsActive === 1 ? "Active" : "Not Active"
+                                    'Last updated by ',
+                                    content.UpdatedBy,
+                                    ' at ',
+                                    content.UpdatedAt
                                 )
                             ),
                             _react2.default.createElement(
                                 _Button2.default,
-                                { medium: true, onClick: this.handleSearch, disabled: isLoading },
-                                'Open'
+                                { medium: true, onClick: function onClick() {
+                                        return _this4.handleDisplay(content);
+                                    }, disabled: isLoading },
+                                'Display'
                             )
                         );
                     }, this)
@@ -22974,6 +23004,145 @@ exports.default = Select;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(13);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(27);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _Button = __webpack_require__(87);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//  Components
+
+
+var Content = function (_PureComponent) {
+    _inherits(Content, _PureComponent);
+
+    function Content(props) {
+        _classCallCheck(this, Content);
+
+        var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
+
+        _this.state = {
+            isLoading: false
+        };
+
+        _this.handleSave = _this.handleSave.bind(_this);
+        return _this;
+    }
+
+    _createClass(Content, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
+        key: 'handleSave',
+        value: function handleSave() {}
+    }, {
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                content = _props.content,
+                onCancel = _props.onCancel;
+            var isLoading = this.state.isLoading;
+
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'content-display' },
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Page: ',
+                    _react2.default.createElement(
+                        'b',
+                        null,
+                        content.Page
+                    )
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Code: ',
+                    _react2.default.createElement(
+                        'b',
+                        null,
+                        content.ContentCode
+                    )
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Status: ',
+                    content.IsActive === 1 ? "Active" : "Not Active"
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Created by ',
+                    content.CreatedBy,
+                    ' at ',
+                    content.CreatedAt
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Last updated by ',
+                    content.UpdatedBy,
+                    ' at ',
+                    content.UpdatedAt
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'content-display__button' },
+                    _react2.default.createElement(
+                        _Button2.default,
+                        { medium: true, onClick: onCancel, disabled: isLoading },
+                        'Cancel'
+                    ),
+                    _react2.default.createElement(
+                        _Button2.default,
+                        { primary: true, medium: true, onClick: this.handleSave, disabled: isLoading },
+                        'Save'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Content;
+}(_react.PureComponent);
+
+exports.default = Content;
 
 /***/ })
 /******/ ]);

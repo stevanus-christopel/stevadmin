@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 
+//  Routes
+import Display from './Display';
+
 //  Components
 import Button from '../../components/Button';
 import Select from '../../components/Select';
@@ -13,6 +16,7 @@ class Content extends PureComponent {
         this.state = {
             pageItems: [],
             contents: [],
+            currentContent: null,
             page: '',
             search: '',
             isLoading: false,
@@ -24,6 +28,9 @@ class Content extends PureComponent {
         this.handleChangePage = this.handleChangePage.bind(this);
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
         this.handleKeyPressSearch = this.handleKeyPressSearch.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleDisplay = this.handleDisplay.bind(this);
+        this.handleDisplayCancel = this.handleDisplayCancel.bind(this);
     }
     componentDidMount() {
         this.fetchPages();
@@ -75,10 +82,22 @@ class Content extends PureComponent {
     handleSearch() {
 
     }
+    handleDisplay(content) {
+        this.setState({
+            currentContent: content
+        });
+    }
+    handleDisplayCancel() {
+        this.setState({
+            currentContent: null
+        });
+    }
     render() {
-        let { contents, pageItems, page, search, isLoading, error } = this.state;
+        let { contents, currentContent, pageItems, page, search, isLoading, error } = this.state;
 
         return (
+            currentContent != null ?
+            <Display content={currentContent} onCancel={this.handleDisplayCancel} /> :
             <div className="content">
                 <div className="content__filter">
                     <Select items={pageItems} disabled={isLoading} />
@@ -90,15 +109,15 @@ class Content extends PureComponent {
                 </div>
                 <div className="content__data">
                     {
-                        contents.map(function(content) {
+                        contents.map(function(content, index) {
                             return (
-                                <div className="content__data-item">
+                                <div key={index} className="content__data-item">
                                     <div>
                                         <p><b>{ content.Page }</b> - { content.ContentCode }</p>
-                                        <p>Last updated by { content.UpdatedBy } at { content.UpdatedAt }</p>
                                         <p>Status: { content.IsActive === 1 ? "Active" : "Not Active" }</p>
+                                        <p>Last updated by { content.UpdatedBy } at { content.UpdatedAt }</p>
                                     </div>
-                                    <Button medium onClick={this.handleSearch} disabled={isLoading}>Open</Button>
+                                    <Button medium onClick={() => this.handleDisplay(content)} disabled={isLoading}>Display</Button>
                                 </div>
                             )
                         }, this)

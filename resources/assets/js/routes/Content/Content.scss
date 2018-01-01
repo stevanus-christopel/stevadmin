@@ -30,6 +30,10 @@
             align-items: center;
             justify-content: space-between;
 
+            &:last-child {
+                border-bottom-color: transparent;
+            }
+
             & p {
                 margin-bottom: 8px;
                 font-size: 15px;
@@ -44,6 +48,33 @@
         
             & .button {
                 min-width: 100px;
+            }
+        }
+    }
+
+    &-display {
+        & p {
+            margin-bottom: 8px;
+            font-size: 15px;
+            line-height: 18px;
+
+            &:first-child {
+                font-weight: 400;
+                font-size: 17px;
+                line-height: 22px;
+            }
+        }
+
+        &__button {
+            margin-top: 16px;
+            text-align: right;
+
+            & .button {
+                min-width: 100px;
+
+                &:first-child {
+                    margin-right: 16px;
+                }
             }
         }
     }
