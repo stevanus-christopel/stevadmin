@@ -46,6 +46,10 @@
                 border-bottom-color: transparent;
             }
 
+            & div:first-child {
+                padding-right: 16px;
+            }
+
             & p {
                 margin-bottom: 8px;
                 font-size: 15px;
@@ -144,5 +148,9 @@
         &-button {
             margin: 16px 0;
         }
+    }
+
+    .content-display table td:first-child {
+        width: initial;
     }
 }

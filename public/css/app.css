@@ -410,6 +410,10 @@ a:hover {
   border-bottom-color: transparent;
 }
 
+.content__data-item div:first-child {
+  padding-right: 16px;
+}
+
 .content__data-item p {
   margin-bottom: 8px;
   font-size: 15px;
@@ -508,6 +512,10 @@ a:hover {
 
   .content__filter-button {
     margin: 16px 0;
+  }
+
+  .content-display table td:first-child {
+    width: initial;
   }
 }
 

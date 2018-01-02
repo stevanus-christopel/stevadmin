@@ -25,4 +25,6 @@ use Illuminate\Http\Request;
 
 Route::post('login','UsersController@login');
 Route::get('pages', 'ContentsController@pages');
-Route::get('contents', 'ContentsController@contents');
+
+Route::get('contents', 'ContentsController@select');
+Route::put('contents', 'ContentsController@update');

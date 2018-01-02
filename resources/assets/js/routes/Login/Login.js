@@ -45,7 +45,7 @@ class Login extends PureComponent {
                 isLoading: true
             });
 
-            fetch('api/contents/', {
+            fetch('api/login/', {
                 method:'post',
                 headers: {
                     'Accept': 'application/json',

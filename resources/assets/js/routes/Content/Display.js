@@ -49,7 +49,7 @@ class Content extends PureComponent {
                 isLoading: true
             });
 
-            fetch('api/login/', {
+            fetch('api/contents/', {
                 method:'put',
                 headers: {
                     'Accept': 'application/json',
@@ -77,13 +77,13 @@ class Content extends PureComponent {
                         isLoading: false
                     });
 
-                    this.props.onCancel();
+                    this.props.onSave();
                 }
             });
         }
     }
     render() {
-        let { content, onCancel } = this.props;
+        let { content, onSave, onCancel } = this.props;
         let { pageItems, editableContent, isLoading, error } = this.state;
 
         return (

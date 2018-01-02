@@ -63,6 +63,7 @@ class Content extends PureComponent {
         .then(data => {
             this.setState({
                 contents: data,
+                currentContent: null,
                 error: null,
                 isLoading: false
             });
@@ -100,6 +101,7 @@ class Content extends PureComponent {
                 {
                     currentContent != null ?
                     <Display pageItems={pageItems} content={currentContent}
+                        onSave={this.fetchContents}
                         onCancel={this.handleDisplayCancel} /> :
                     <div>
                         <h2>Content List</h2>

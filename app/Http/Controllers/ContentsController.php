@@ -12,9 +12,17 @@ class ContentsController extends Controller
         return Content::distinct()->get(['page']);
     }
 
-    public function contents()
+    public function select()
     {
         return Content::all();
+    }
+ 
+    public function update(Request $request)
+    {
+        $Content = Content::findorfail($request->Id);
+        $Content->update($request->all());
+ 
+        return response()->json($Content, 200);
     }
 
     // public function index()
