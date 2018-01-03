@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 //  Routes
 import Display from './Display';
+import Create from './Create';
 
 //  Components
 import Button from '../../components/Button';
@@ -21,6 +22,7 @@ class Content extends PureComponent {
             search: '',
             isLoading: false,
             error: null,
+            isCreate: false,
         };
 
         this.fetchPages = this.fetchPages.bind(this);
@@ -30,7 +32,8 @@ class Content extends PureComponent {
         this.handleKeyPressSearch = this.handleKeyPressSearch.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleDisplay = this.handleDisplay.bind(this);
-        this.handleDisplayCancel = this.handleDisplayCancel.bind(this);
+        this.handleCreate = this.handleCreate.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
     componentDidMount() {
         this.fetchPages();
@@ -65,7 +68,8 @@ class Content extends PureComponent {
                 contents: data,
                 currentContent: null,
                 error: null,
-                isLoading: false
+                isLoading: false,
+                isCreate: false
             });
         });
     }
@@ -85,24 +89,37 @@ class Content extends PureComponent {
     }
     handleDisplay(content) {
         this.setState({
-            currentContent: content
+            currentContent: content,
+            isCreate: false,
         });
     }
-    handleDisplayCancel() {
+    handleCreate(content) {
         this.setState({
-            currentContent: null
+            currentContent: null,
+            isCreate: true
+        });
+    }
+    handleCancel() {
+        this.setState({
+            currentContent: null,
+            isCreate: false
         });
     }
     render() {
-        let { contents, currentContent, pageItems, page, search, isLoading, error } = this.state;
+        let { contents, currentContent, pageItems, page, search, isLoading, error,
+        isCreate } = this.state;
 
         return (
             <div className="content">
                 {
+                    isCreate ?
+                    <Create pageItems={pageItems}
+                        onSave={this.fetchContents}
+                        onCancel={this.handleCancel} /> :
                     currentContent != null ?
                     <Display pageItems={pageItems} content={currentContent}
                         onSave={this.fetchContents}
-                        onCancel={this.handleDisplayCancel} /> :
+                        onCancel={this.handleCancel} /> :
                     <div>
                         <h2>Content List</h2>
                         <div className="content__filter">
@@ -116,7 +133,7 @@ class Content extends PureComponent {
                                 onKeyPress={this.handleKeyPressSearch} />
                             <div className="content__filter-button">
                                 <Button primary medium onClick={this.handleSearch} disabled={isLoading}>Search</Button>
-                                <Button medium onClick={this.handleSearch} disabled={isLoading}>Add New Content</Button>
+                                <Button medium onClick={this.handleCreate} disabled={isLoading}>Add New Content</Button>
                             </div>
                         </div>
                         <div className="content__data">
@@ -126,7 +143,7 @@ class Content extends PureComponent {
                                         <div key={index} className="content__data-item">
                                             <div>
                                                 <p><b>{ content.Page }</b> - { content.ContentCode }</p>
-                                                <p>Status: { content.IsActive === 1 ? "Active" : "Not Active" }</p>
+                                                <p>Status: { content.IsActive === 1 ? "Active" : <span>Not Active</span> }</p>
                                                 <p>Last updated by { content.UpdatedBy } at { content.UpdatedAt }</p>
                                             </div>
                                             <Button small onClick={() => this.handleDisplay(content)} disabled={isLoading}>Edit</Button>

@@ -65,10 +65,30 @@
                     color: $boulder;
                     font-size: 12px;
                 }
+
+                & span {
+                    color: $persimmon;
+                }
             }
 
             & small {
                 color: $boulder;
+            }
+        }
+    }
+
+    &__editor {
+        padding: 0 16px;
+
+        &-wrapper {
+            border: 1px solid $alto;
+
+            & .rdw-editor-toolbar {
+                padding: 8px;
+                margin: 0;
+                border: none;
+                border-radius: 0;
+                border-bottom: 1px solid $alto;
             }
         }
     }

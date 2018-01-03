@@ -11,15 +11,20 @@ import Button from '../../components/Button';
 import Select from '../../components/Select';
 import TextInput from '../../components/TextInput';
 
-class Content extends PureComponent {
+class Create extends PureComponent {
     constructor(props) {
         super(props);
         
         this.state = {
             pageItems: props.pageItems,
-            editableContent: props.content,
+            editableContent: {
+                Page: props.pageItems[0].value,
+                ContentCode: '',
+                Content: '',
+                IsActive: 0
+            },
             editorState: EditorState.createWithContent(
-                ContentState.createFromBlockArray(htmlToDraft(props.content.Content))
+                ContentState.createFromBlockArray(htmlToDraft(''))
             ),
             isLoading: false,
             error: null
@@ -68,11 +73,13 @@ class Content extends PureComponent {
                 isLoading: true
             });
 
-            editableContent.UpdatedAt = window.generateLaravelDate(new Date());
-            editableContent.UpdatedBy = JSON.parse(window.sessionStorage.user).Username;
+            editableContent.CreatedAt = window.generateLaravelDate(new Date());
+            editableContent.CreatedBy = JSON.parse(window.sessionStorage.user).Username;
+            editableContent.UpdatedAt = editableContent.CreatedAt
+            editableContent.UpdatedBy = editableContent.CreatedBy
 
             fetch('api/contents/', {
-                method:'put',
+                method:'post',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -105,12 +112,12 @@ class Content extends PureComponent {
         }
     }
     render() {
-        let { content, onSave, onCancel } = this.props;
+        let { onSave, onCancel } = this.props;
         let { pageItems, editableContent, editorState, isLoading, error } = this.state;
 
         return (
             <div className="content-display">
-                <h2>Edit Content</h2>
+                <h2>New Content</h2>
                 <table>
                     <tbody>
                         <tr>
@@ -135,17 +142,10 @@ class Content extends PureComponent {
                                 <Select items={[
                                     { name: "Active", value: 1 },
                                     { name: "Not Active", value: 0 }
-                                ]} value={editableContent.IsActive} disabled={isLoading}
+                                ]}
+                                value={editableContent.IsActive} disabled={isLoading}
                                 onChange={this.handleChangeStatus} />
                             </td>
-                        </tr>
-                        <tr>
-                            <td>Created by</td>
-                            <td>{ content.CreatedBy } at { content.CreatedAt }</td>
-                        </tr>
-                        <tr>
-                            <td>Last updated by</td>
-                            <td>{ content.UpdatedBy } at { content.UpdatedAt }</td>
                         </tr>
                         <tr>
                             <td>Content</td>
@@ -180,4 +180,4 @@ class Content extends PureComponent {
     }
 }
 
-export default Content;
+export default Create;

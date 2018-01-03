@@ -431,8 +431,28 @@ a:hover {
   font-size: 12px;
 }
 
+.content__data-item p span {
+  color: #FF5A5F;
+}
+
 .content__data-item small {
   color: #767676;
+}
+
+.content__editor {
+  padding: 0 16px;
+}
+
+.content__editor-wrapper {
+  border: 1px solid #DBDBDB;
+}
+
+.content__editor-wrapper .rdw-editor-toolbar {
+  padding: 8px;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #DBDBDB;
 }
 
 .content-display h2 {
