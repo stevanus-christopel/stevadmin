@@ -33658,9 +33658,11 @@ var Content = function (_PureComponent) {
         _this.state = {
             pageItems: [],
             contents: [],
+            countContents: 0,
             currentContent: null,
             page: '',
             search: '',
+            contentPage: 1,
             isLoading: false,
             error: null,
             isCreate: false
@@ -33668,6 +33670,7 @@ var Content = function (_PureComponent) {
 
         _this.fetchPages = _this.fetchPages.bind(_this);
         _this.fetchContents = _this.fetchContents.bind(_this);
+        _this.handleChangeContentPage = _this.handleChangeContentPage.bind(_this);
         _this.handleChangePage = _this.handleChangePage.bind(_this);
         _this.handleChangeSearch = _this.handleChangeSearch.bind(_this);
         _this.handleKeyPressSearch = _this.handleKeyPressSearch.bind(_this);
@@ -33700,7 +33703,9 @@ var Content = function (_PureComponent) {
                 data.map(function (dataItem) {
                     pageItems.push({ name: dataItem.page, value: dataItem.page });
                 });
-                _this2.setState({ pageItems: pageItems });
+                _this2.setState({
+                    pageItems: pageItems
+                });
             });
         }
     }, {
@@ -33711,17 +33716,23 @@ var Content = function (_PureComponent) {
             this.setState({
                 isLoading: true
             });
-            fetch('/api/contents?page=' + this.state.page + '&search=' + this.state.search).then(function (response) {
+            fetch('/api/contents?page=' + this.state.page + '&search=' + this.state.search + '&contentPage=' + this.state.contentPage).then(function (response) {
                 return response.json();
             }).then(function (data) {
                 _this3.setState({
-                    contents: data,
+                    contents: data.Content,
+                    countContents: data.Count,
                     currentContent: null,
                     error: null,
                     isLoading: false,
                     isCreate: false
                 });
             });
+        }
+    }, {
+        key: 'handleChangeContentPage',
+        value: function handleChangeContentPage(newContentPage) {
+            this.setState({ contentPage: newContentPage }, this.fetchContents);
         }
     }, {
         key: 'handleChangePage',
@@ -33798,6 +33809,8 @@ var Content = function (_PureComponent) {
     }, {
         key: 'render',
         value: function render() {
+            var _this6 = this;
+
             var _state = this.state,
                 contents = _state.contents,
                 currentContent = _state.currentContent,
@@ -33913,6 +33926,31 @@ var Content = function (_PureComponent) {
                                 )
                             );
                         }, this)
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'content__page' },
+                        this.state.contentPage > 1 && _react2.default.createElement(
+                            'span',
+                            { onClick: function onClick() {
+                                    return _this6.handleChangeContentPage(_this6.state.contentPage - 1);
+                                } },
+                            'Prev'
+                        ),
+                        _react2.default.createElement(
+                            'b',
+                            null,
+                            this.state.contentPage
+                        ),
+                        ' of ',
+                        Math.ceil(this.state.countContents / 5),
+                        this.state.contentPage < Math.ceil(this.state.countContents / 5) && _react2.default.createElement(
+                            'span',
+                            { onClick: function onClick() {
+                                    return _this6.handleChangeContentPage(_this6.state.contentPage + 1);
+                                } },
+                            'Next'
+                        )
                     )
                 )
             );

@@ -16,6 +16,20 @@ class ContentsController extends Controller
     {
         $page = $request->query('page');
         $search = $request->query('search');
+        $contentPage = $request->query('contentPage') - 1;
+
+        $dataPerPage = 5;
+
+        $Count = Content::where('Page', 'LIKE', '%'.$page.'%')->
+        where(function($query) use ($search){
+            $query->where('ContentCode', 'LIKE', '%'.$search.'%');
+            $query->orWhere('Page', 'LIKE', '%'.$search.'%');
+            $query->orWhere('Content', 'LIKE', '%'.$search.'%');
+        })->count();
+
+        if($contentPage * $dataPerPage > $Count) {
+            $contentPage = $Count / $dataPerPage;
+        }
 
         $Content = Content::where('Page', 'LIKE', '%'.$page.'%')->
         where(function($query) use ($search){
@@ -23,9 +37,10 @@ class ContentsController extends Controller
             $query->orWhere('Page', 'LIKE', '%'.$search.'%');
             $query->orWhere('Content', 'LIKE', '%'.$search.'%');
         })->
+        skip(($contentPage * $dataPerPage))->limit($dataPerPage)->
         orderBy('page', 'asc')->get();
 
-        return $Content;
+        return ['Content' => $Content, 'Count' => $Count];
     }
  
     public function insert(Request $request)

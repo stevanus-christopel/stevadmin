@@ -411,10 +411,6 @@ a:hover {
           justify-content: space-between;
 }
 
-.content__data-item:last-child {
-  border-bottom-color: transparent;
-}
-
 .content__data-item div:first-child {
   padding-right: 16px;
 }
@@ -450,6 +446,29 @@ a:hover {
 
 .content__data-item-button .button--error {
   margin-right: 8px;
+}
+
+.content__page {
+  text-align: right;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 16px;
+}
+
+.content__page span {
+  display: inline-block;
+  padding: 8px;
+  margin-right: 8px;
+}
+
+.content__page span:last-child {
+  margin-left: 8px;
+  margin-right: -8px;
+}
+
+.content__page span:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .content__editor {

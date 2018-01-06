@@ -17,9 +17,11 @@ class Content extends PureComponent {
         this.state = {
             pageItems: [],
             contents: [],
+            countContents: 0,
             currentContent: null,
             page: '',
             search: '',
+            contentPage: 1,
             isLoading: false,
             error: null,
             isCreate: false,
@@ -27,6 +29,7 @@ class Content extends PureComponent {
 
         this.fetchPages = this.fetchPages.bind(this);
         this.fetchContents = this.fetchContents.bind(this);
+        this.handleChangeContentPage = this.handleChangeContentPage.bind(this);
         this.handleChangePage = this.handleChangePage.bind(this);
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
         this.handleKeyPressSearch = this.handleKeyPressSearch.bind(this);
@@ -53,26 +56,33 @@ class Content extends PureComponent {
             data.map(function(dataItem) {
                 pageItems.push({ name: dataItem.page, value: dataItem.page });
             });
-            this.setState({ pageItems: pageItems });
+            this.setState({ 
+                pageItems: pageItems,
+            });
         });
     }
     fetchContents() {
         this.setState({
             isLoading: true
         });
-        fetch(`/api/contents?page=${this.state.page}&search=${this.state.search}`)
+        fetch(`/api/contents?page=${this.state.page}&search=${this.state.search}&contentPage=${this.state.contentPage}`)
         .then(response => {
             return response.json();
         })
         .then(data => {
             this.setState({
-                contents: data,
+                contents: data.Content,
+                countContents: data.Count,
                 currentContent: null,
                 error: null,
                 isLoading: false,
                 isCreate: false
             });
         });
+    }
+    handleChangeContentPage(newContentPage) {
+        this.setState({contentPage: newContentPage},
+            this.fetchContents);
     }
     handleChangePage(event) {
         this.setState({page: event.target.value},
@@ -186,6 +196,17 @@ class Content extends PureComponent {
                                         </div>
                                     )
                                 }, this)
+                            }
+                        </div>
+                        <div className="content__page">
+                            {
+                                this.state.contentPage > 1 && 
+                                <span onClick={() => this.handleChangeContentPage(this.state.contentPage - 1)}>Prev</span>
+                            }
+                            <b>{ this.state.contentPage }</b> of { Math.ceil(this.state.countContents / 5) }
+                            {
+                                this.state.contentPage < Math.ceil(this.state.countContents / 5) &&
+                                <span onClick={ () => this.handleChangeContentPage(this.state.contentPage + 1)}>Next</span>
                             }
                         </div>
                     </div>
