@@ -33446,6 +33446,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Button = function Button(props) {
     var primary = props.primary,
         secondary = props.secondary,
+        error = props.error,
         large = props.large,
         medium = props.medium,
         small = props.small,
@@ -33457,6 +33458,7 @@ var Button = function Button(props) {
     var classes = (0, _classnames2.default)("button", _classnames2.default, {
         "button--primary": primary,
         "button--secondary": secondary,
+        "button--error": error,
         "button--large": large,
         "button--medium": medium,
         "button--small": small,
@@ -33474,6 +33476,7 @@ var Button = function Button(props) {
 Button.propTypes = {
     primary: _propTypes2.default.bool,
     secondary: _propTypes2.default.bool,
+    error: _propTypes2.default.bool,
     large: _propTypes2.default.bool,
     medium: _propTypes2.default.bool,
     small: _propTypes2.default.bool,
@@ -33485,6 +33488,7 @@ Button.propTypes = {
 Button.defaultProps = {
     primary: false,
     secondary: false,
+    error: false,
     large: false,
     medium: false,
     small: false,
@@ -33667,8 +33671,10 @@ var Content = function (_PureComponent) {
         _this.handleChangePage = _this.handleChangePage.bind(_this);
         _this.handleChangeSearch = _this.handleChangeSearch.bind(_this);
         _this.handleKeyPressSearch = _this.handleKeyPressSearch.bind(_this);
+        _this.handleDelete = _this.handleDelete.bind(_this);
         _this.handleDisplay = _this.handleDisplay.bind(_this);
         _this.handleCreate = _this.handleCreate.bind(_this);
+        _this.handleCreateSave = _this.handleCreateSave.bind(_this);
         _this.handleCancel = _this.handleCancel.bind(_this);
         return _this;
     }
@@ -33677,6 +33683,7 @@ var Content = function (_PureComponent) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.fetchPages();
+            this.fetchContents();
         }
     }, {
         key: 'fetchPages',
@@ -33694,7 +33701,6 @@ var Content = function (_PureComponent) {
                     pageItems.push({ name: dataItem.page, value: dataItem.page });
                 });
                 _this2.setState({ pageItems: pageItems });
-                _this2.fetchContents();
             });
         }
     }, {
@@ -33735,6 +33741,31 @@ var Content = function (_PureComponent) {
             }
         }
     }, {
+        key: 'handleDelete',
+        value: function handleDelete(content) {
+            var _this4 = this;
+
+            if (confirm('Do you want to delete "' + content.Page + ' - ' + content.ContentCode + '" ?')) {
+                fetch('api/contents/', {
+                    method: 'delete',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(content)
+                }).then(function (response) {
+                    if (response.status != 204) {
+                        alert('Failed to delete "' + content.Page + ' - ' + content.ContentCode + '".');
+                    } else {
+                        var newContents = _this4.state.contents.filter(function (item) {
+                            return item !== content;
+                        });
+                        _this4.setState({ contents: newContents });
+                    }
+                });
+            }
+        }
+    }, {
         key: 'handleDisplay',
         value: function handleDisplay(content) {
             this.setState({
@@ -33749,6 +33780,12 @@ var Content = function (_PureComponent) {
                 currentContent: null,
                 isCreate: true
             });
+        }
+    }, {
+        key: 'handleCreateSave',
+        value: function handleCreateSave() {
+            this.fetchContents();
+            this.fetchPages();
         }
     }, {
         key: 'handleCancel',
@@ -33776,7 +33813,7 @@ var Content = function (_PureComponent) {
                 'div',
                 { className: 'content' },
                 isCreate ? _react2.default.createElement(_Create2.default, { pageItems: pageItems,
-                    onSave: this.fetchContents,
+                    onSave: this.handleCreateSave,
                     onCancel: this.handleCancel }) : currentContent != null ? _react2.default.createElement(_Display2.default, { pageItems: pageItems, content: currentContent,
                     onSave: this.fetchContents,
                     onCancel: this.handleCancel }) : _react2.default.createElement(
@@ -33800,12 +33837,14 @@ var Content = function (_PureComponent) {
                             { className: 'content__filter-button' },
                             _react2.default.createElement(
                                 _Button2.default,
-                                { primary: true, medium: true, onClick: this.fetchContents, disabled: isLoading },
+                                { primary: true, medium: true, onClick: this.fetchContents,
+                                    disabled: isLoading },
                                 'Search'
                             ),
                             _react2.default.createElement(
                                 _Button2.default,
-                                { medium: true, onClick: this.handleCreate, disabled: isLoading },
+                                { medium: true, onClick: this.handleCreate,
+                                    disabled: isLoading },
                                 'Add New Content'
                             )
                         )
@@ -33814,7 +33853,7 @@ var Content = function (_PureComponent) {
                         'div',
                         { className: 'content__data' },
                         contents.map(function (content, index) {
-                            var _this4 = this;
+                            var _this5 = this;
 
                             return _react2.default.createElement(
                                 'div',
@@ -33853,11 +33892,24 @@ var Content = function (_PureComponent) {
                                     )
                                 ),
                                 _react2.default.createElement(
-                                    _Button2.default,
-                                    { small: true, onClick: function onClick() {
-                                            return _this4.handleDisplay(content);
-                                        }, disabled: isLoading },
-                                    'Edit'
+                                    'div',
+                                    { className: 'content__data-item-button' },
+                                    content.IsActive != 1 && _react2.default.createElement(
+                                        _Button2.default,
+                                        { error: true, small: true, onClick: function onClick() {
+                                                return _this5.handleDelete(content);
+                                            },
+                                            disabled: isLoading },
+                                        'Delete'
+                                    ),
+                                    _react2.default.createElement(
+                                        _Button2.default,
+                                        { small: true, onClick: function onClick() {
+                                                return _this5.handleDisplay(content);
+                                            },
+                                            disabled: isLoading },
+                                        'Edit'
+                                    )
                                 )
                             );
                         }, this)
@@ -42701,6 +42753,7 @@ var Create = function (_PureComponent) {
             pageItems: props.pageItems,
             editableContent: {
                 Page: props.pageItems[0].value,
+                NewPage: '',
                 ContentCode: '',
                 Content: '',
                 IsActive: 0
@@ -42711,6 +42764,7 @@ var Create = function (_PureComponent) {
         };
 
         _this.handleChangePage = _this.handleChangePage.bind(_this);
+        _this.handleChangeNewPage = _this.handleChangeNewPage.bind(_this);
         _this.handleChangeCode = _this.handleChangeCode.bind(_this);
         _this.handleChangeStatus = _this.handleChangeStatus.bind(_this);
         _this.onEditorStateChange = _this.onEditorStateChange.bind(_this);
@@ -42719,8 +42773,12 @@ var Create = function (_PureComponent) {
     }
 
     _createClass(Create, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {}
+        key: 'handleChangeNewPage',
+        value: function handleChangeNewPage(event) {
+            var content = _extends({}, this.state.editableContent);
+            content.NewPage = event.target.value;
+            this.setState({ editableContent: content });
+        }
     }, {
         key: 'handleChangePage',
         value: function handleChangePage(event) {
@@ -42772,6 +42830,10 @@ var Create = function (_PureComponent) {
                 editableContent.CreatedBy = JSON.parse(window.sessionStorage.user).Username;
                 editableContent.UpdatedAt = editableContent.CreatedAt;
                 editableContent.UpdatedBy = editableContent.CreatedBy;
+
+                if (editableContent.NewPage.length > 0) {
+                    editableContent.Page = editableContent.NewPage;
+                }
 
                 fetch('api/contents/', {
                     method: 'post',
@@ -42844,8 +42906,22 @@ var Create = function (_PureComponent) {
                                 'td',
                                 null,
                                 _react2.default.createElement(_Select2.default, { items: pageItems,
-                                    value: editableContent.Page, disabled: isLoading,
+                                    value: editableContent.Page,
+                                    disabled: isLoading || editableContent.NewPage.length > 0,
                                     onChange: this.handleChangePage })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'tr',
+                            null,
+                            _react2.default.createElement('td', null),
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                _react2.default.createElement(_TextInput2.default, { type: 'text',
+                                    value: editableContent.NewPage, disabled: isLoading,
+                                    placeholder: 'Enter new page here if you don\'t want to use existing page.',
+                                    onChange: this.handleChangeNewPage })
                             )
                         ),
                         _react2.default.createElement(

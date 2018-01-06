@@ -21,3 +21,4 @@ Route::get('pages', 'ContentsController@pages');
 Route::get('contents', 'ContentsController@select');
 Route::post('contents', 'ContentsController@insert');
 Route::put('contents', 'ContentsController@update');
+Route::delete('contents', 'ContentsController@delete');

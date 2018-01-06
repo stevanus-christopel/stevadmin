@@ -249,6 +249,11 @@ a:hover {
   color: #FFFFFF;
 }
 
+.button--error {
+  color: #FF5A5F;
+  border-color: #FF5A5F;
+}
+
 .button--large {
   font-size: 17px;
   line-height: 32px;
@@ -439,6 +444,14 @@ a:hover {
   color: #767676;
 }
 
+.content__data-item-button .button {
+  width: 68px;
+}
+
+.content__data-item-button .button--error {
+  margin-right: 8px;
+}
+
 .content__editor {
   padding: 0 16px;
 }
@@ -536,6 +549,28 @@ a:hover {
 
   .content-display table td:first-child {
     width: initial;
+  }
+
+  .content__data-item-button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+
+  .content__data-item-button .button {
+    display: block;
+    margin-right: 0;
+  }
+
+  .content__data-item-button .button--error {
+    margin-bottom: 8px;
   }
 }
 

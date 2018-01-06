@@ -74,6 +74,16 @@
             & small {
                 color: $boulder;
             }
+
+            &-button {
+                & .button {
+                    width: 68px;
+                    
+                    &--error {
+                        margin-right: 8px;
+                    }
+                }
+            }
         }
     }
 
@@ -172,5 +182,20 @@
 
     .content-display table td:first-child {
         width: initial;
+    }
+
+    .content__data-item-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        
+        & .button {
+            display: block;
+            margin-right: 0;
+
+            &--error {
+                margin-bottom: 8px;
+            }
+        }
     }
 }

@@ -30,12 +30,15 @@ class Content extends PureComponent {
         this.handleChangePage = this.handleChangePage.bind(this);
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
         this.handleKeyPressSearch = this.handleKeyPressSearch.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         this.handleDisplay = this.handleDisplay.bind(this);
         this.handleCreate = this.handleCreate.bind(this);
+        this.handleCreateSave = this.handleCreateSave.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
     }
     componentDidMount() {
         this.fetchPages();
+        this.fetchContents();
     }
     fetchPages() {
         this.setState({
@@ -51,7 +54,6 @@ class Content extends PureComponent {
                 pageItems.push({ name: dataItem.page, value: dataItem.page });
             });
             this.setState({ pageItems: pageItems });
-            this.fetchContents();
         });
     }
     fetchContents() {
@@ -84,6 +86,29 @@ class Content extends PureComponent {
             this.handleSearch();
         }
     }
+    handleDelete(content) {
+        if(confirm(`Do you want to delete "${content.Page} - ${content.ContentCode}" ?`)) {
+            fetch( 'api/contents/',
+            { 
+                method: 'delete',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(content)
+            })
+            .then(response => {
+                if(response.status != 204) {
+                    alert(`Failed to delete "${content.Page} - ${content.ContentCode}".`)
+                } else {
+                    var newContents = this.state.contents.filter(function(item) {
+                        return item !== content
+                    });
+                    this.setState({ contents: newContents });
+                }
+            });
+        }
+    }
     handleDisplay(content) {
         this.setState({
             currentContent: content,
@@ -95,6 +120,10 @@ class Content extends PureComponent {
             currentContent: null,
             isCreate: true
         });
+    }
+    handleCreateSave() {
+        this.fetchContents();
+        this.fetchPages();
     }
     handleCancel() {
         this.setState({
@@ -111,7 +140,7 @@ class Content extends PureComponent {
                 {
                     isCreate ?
                     <Create pageItems={pageItems}
-                        onSave={this.fetchContents}
+                        onSave={this.handleCreateSave}
                         onCancel={this.handleCancel} /> :
                     currentContent != null ?
                     <Display pageItems={pageItems} content={currentContent}
@@ -129,8 +158,10 @@ class Content extends PureComponent {
                                 onChange={this.handleChangeSearch}
                                 onKeyPress={this.handleKeyPressSearch} />
                             <div className="content__filter-button">
-                                <Button primary medium onClick={this.fetchContents} disabled={isLoading}>Search</Button>
-                                <Button medium onClick={this.handleCreate} disabled={isLoading}>Add New Content</Button>
+                                <Button primary medium onClick={this.fetchContents} 
+                                disabled={isLoading}>Search</Button>
+                                <Button medium onClick={this.handleCreate} 
+                                disabled={isLoading}>Add New Content</Button>
                             </div>
                         </div>
                         <div className="content__data">
@@ -143,7 +174,15 @@ class Content extends PureComponent {
                                                 <p>Status: { content.IsActive === 1 ? "Active" : <span>Not Active</span> }</p>
                                                 <p>Last updated by { content.UpdatedBy } at { content.UpdatedAt }</p>
                                             </div>
-                                            <Button small onClick={() => this.handleDisplay(content)} disabled={isLoading}>Edit</Button>
+                                            <div className="content__data-item-button">
+                                                {
+                                                    content.IsActive != 1 &&
+                                                    <Button error small onClick={() => this.handleDelete(content)} 
+                                                    disabled={isLoading}>Delete</Button>
+                                                }
+                                                <Button small onClick={() => this.handleDisplay(content)} 
+                                                disabled={isLoading}>Edit</Button>
+                                            </div>
                                         </div>
                                     )
                                 }, this)

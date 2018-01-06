@@ -19,6 +19,7 @@ class Create extends PureComponent {
             pageItems: props.pageItems,
             editableContent: {
                 Page: props.pageItems[0].value,
+                NewPage: '',
                 ContentCode: '',
                 Content: '',
                 IsActive: 0
@@ -31,13 +32,16 @@ class Create extends PureComponent {
         };
 
         this.handleChangePage = this.handleChangePage.bind(this);
+        this.handleChangeNewPage = this.handleChangeNewPage.bind(this);
         this.handleChangeCode = this.handleChangeCode.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
         this.onEditorStateChange = this.onEditorStateChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
     }
-    componentDidMount() {
-
+    handleChangeNewPage(event) {
+        let content = {...this.state.editableContent};
+        content.NewPage = event.target.value;
+        this.setState({editableContent: content});
     }
     handleChangePage(event) {
         let content = {...this.state.editableContent};
@@ -77,6 +81,10 @@ class Create extends PureComponent {
             editableContent.CreatedBy = JSON.parse(window.sessionStorage.user).Username;
             editableContent.UpdatedAt = editableContent.CreatedAt
             editableContent.UpdatedBy = editableContent.CreatedBy
+
+            if(editableContent.NewPage.length > 0) {
+                editableContent.Page = editableContent.NewPage;
+            }
 
             fetch('api/contents/', {
                 method:'post',
@@ -124,8 +132,18 @@ class Create extends PureComponent {
                             <td>Page</td>
                             <td>
                                 <Select items={pageItems} 
-                                value={editableContent.Page} disabled={isLoading}
+                                value={editableContent.Page}
+                                disabled={isLoading || editableContent.NewPage.length > 0}
                                 onChange={this.handleChangePage}  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <TextInput type="text"
+                                value={editableContent.NewPage} disabled={isLoading}
+                                placeholder="Enter new page here if you don't want to use existing page."
+                                onChange={this.handleChangeNewPage} />
                             </td>
                         </tr>
                         <tr>

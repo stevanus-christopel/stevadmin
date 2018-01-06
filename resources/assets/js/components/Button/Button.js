@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const Button = props => {
-    const { primary, secondary, large, medium, small, disabled, onClick, children } = props;
+    const { primary, secondary, error, large, medium, small, disabled, onClick, children } = props;
 
     const classes = classNames(
         "button",
@@ -11,6 +11,7 @@ const Button = props => {
         {
             "button--primary": primary,
             "button--secondary": secondary,
+            "button--error": error,
             "button--large": large,
             "button--medium": medium,
             "button--small": small,
@@ -29,6 +30,7 @@ const Button = props => {
 Button.propTypes = {
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
+    error: PropTypes.bool,
     large: PropTypes.bool,
     medium: PropTypes.bool,
     small: PropTypes.bool,
@@ -40,6 +42,7 @@ Button.propTypes = {
 Button.defaultProps = {
     primary: false,
     secondary: false,
+    error: false,
     large: false,
     medium: false,
     small: false,

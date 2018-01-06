@@ -54,10 +54,11 @@ class ContentsController extends Controller
         return response()->json($Content, 200);
     }
  
-    // public function delete(stv_content $stv_content)
-    // {
-    //     $stv_content->delete();
+    public function delete(Request $request)
+    {
+        $Content = Content::findorfail($request->Id);
+        $Content->delete();
  
-    //     return response()->json(null, 204);
-    // }
+        return response()->json(null, 204);
+    }
 }
