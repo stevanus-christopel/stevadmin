@@ -30,7 +30,6 @@ class Content extends PureComponent {
         this.handleChangePage = this.handleChangePage.bind(this);
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
         this.handleKeyPressSearch = this.handleKeyPressSearch.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
         this.handleDisplay = this.handleDisplay.bind(this);
         this.handleCreate = this.handleCreate.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
@@ -42,7 +41,7 @@ class Content extends PureComponent {
         this.setState({
             isLoading: true
         });
-        fetch('/api/pages')
+        fetch(`/api/pages`)
         .then(response => {
             return response.json();
         })
@@ -59,7 +58,7 @@ class Content extends PureComponent {
         this.setState({
             isLoading: true
         });
-        fetch('/api/contents')
+        fetch(`/api/contents?page=${this.state.page}&search=${this.state.search}`)
         .then(response => {
             return response.json();
         })
@@ -74,7 +73,8 @@ class Content extends PureComponent {
         });
     }
     handleChangePage(event) {
-        this.setState({page: event.target.value});
+        this.setState({page: event.target.value},
+            this.fetchContents);
     }
     handleChangeSearch(event) {
         this.setState({search: event.target.value});
@@ -83,9 +83,6 @@ class Content extends PureComponent {
         if(event.key == 'Enter'){
             this.handleSearch();
         }
-    }
-    handleSearch() {
-
     }
     handleDisplay(content) {
         this.setState({
@@ -124,15 +121,15 @@ class Content extends PureComponent {
                         <h2>Content List</h2>
                         <div className="content__filter">
                             <Select items={
-                                [{ name: 'All Pages', value: 'All Pages' },
+                                [{ name: 'All Pages', value: '' },
                                 ...pageItems
-                                ]} disabled={isLoading} />
+                                ]} disabled={isLoading} onChange={this.handleChangePage} />
                             <TextInput type="text"
-                                placeholder="Search here..." value={page} disabled={isLoading}
-                                onChange={this.handleChangePage}
+                                placeholder="Search here..." value={search} disabled={isLoading}
+                                onChange={this.handleChangeSearch}
                                 onKeyPress={this.handleKeyPressSearch} />
                             <div className="content__filter-button">
-                                <Button primary medium onClick={this.handleSearch} disabled={isLoading}>Search</Button>
+                                <Button primary medium onClick={this.fetchContents} disabled={isLoading}>Search</Button>
                                 <Button medium onClick={this.handleCreate} disabled={isLoading}>Add New Content</Button>
                             </div>
                         </div>

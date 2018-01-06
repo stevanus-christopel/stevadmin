@@ -12,9 +12,20 @@ class ContentsController extends Controller
         return Content::distinct()->get(['page']);
     }
 
-    public function select()
+    public function select(Request $request)
     {
-        return Content::orderBy('page', 'asc')->get();
+        $page = $request->query('page');
+        $search = $request->query('search');
+
+        $Content = Content::where('Page', 'LIKE', '%'.$page.'%')->
+        where(function($query) use ($search){
+            $query->where('ContentCode', 'LIKE', '%'.$search.'%');
+            $query->orWhere('Page', 'LIKE', '%'.$search.'%');
+            $query->orWhere('Content', 'LIKE', '%'.$search.'%');
+        })->
+        orderBy('page', 'asc')->get();
+
+        return $Content;
     }
  
     public function insert(Request $request)
