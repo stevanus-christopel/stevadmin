@@ -12,5 +12,5 @@ class Content extends Model
     const CREATED_AT = 'CreatedAt';
     const UPDATED_AT = 'UpdatedAt';
 
-    protected $fillable = ['ContentCode', 'Page', 'Content', 'IsActive', 'CreatedBy', 'UpdatedBy'];
+    protected $fillable = ['ContentCode', 'Page', 'Content', 'Language', 'IsActive', 'CreatedBy', 'UpdatedBy'];
 }

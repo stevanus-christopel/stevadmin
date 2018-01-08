@@ -33674,6 +33674,7 @@ var Content = function (_PureComponent) {
         _this.handleChangePage = _this.handleChangePage.bind(_this);
         _this.handleChangeSearch = _this.handleChangeSearch.bind(_this);
         _this.handleKeyPressSearch = _this.handleKeyPressSearch.bind(_this);
+        _this.handleSearch = _this.handleSearch.bind(_this);
         _this.handleDelete = _this.handleDelete.bind(_this);
         _this.handleDisplay = _this.handleDisplay.bind(_this);
         _this.handleCreate = _this.handleCreate.bind(_this);
@@ -33750,6 +33751,11 @@ var Content = function (_PureComponent) {
             if (event.key == 'Enter') {
                 this.handleSearch();
             }
+        }
+    }, {
+        key: 'handleSearch',
+        value: function handleSearch() {
+            this.setState({ contentPage: 1 }, this.fetchContents);
         }
     }, {
         key: 'handleDelete',
@@ -33850,7 +33856,7 @@ var Content = function (_PureComponent) {
                             { className: 'content__filter-button' },
                             _react2.default.createElement(
                                 _Button2.default,
-                                { primary: true, medium: true, onClick: this.fetchContents,
+                                { primary: true, medium: true, onClick: this.handleSearch,
                                     disabled: isLoading },
                                 'Search'
                             ),
@@ -33884,6 +33890,12 @@ var Content = function (_PureComponent) {
                                         ),
                                         ' - ',
                                         content.ContentCode
+                                    ),
+                                    _react2.default.createElement(
+                                        'p',
+                                        null,
+                                        'Language: ',
+                                        content.Language
                                     ),
                                     _react2.default.createElement(
                                         'p',
@@ -34040,6 +34052,7 @@ var Content = function (_PureComponent) {
 
         _this.handleChangePage = _this.handleChangePage.bind(_this);
         _this.handleChangeCode = _this.handleChangeCode.bind(_this);
+        _this.handleChangeLanguage = _this.handleChangeLanguage.bind(_this);
         _this.handleChangeStatus = _this.handleChangeStatus.bind(_this);
         _this.onEditorStateChange = _this.onEditorStateChange.bind(_this);
         _this.handleSave = _this.handleSave.bind(_this);
@@ -34061,6 +34074,13 @@ var Content = function (_PureComponent) {
         value: function handleChangeCode(event) {
             var content = _extends({}, this.state.editableContent);
             content.ContentCode = event.target.value;
+            this.setState({ editableContent: content });
+        }
+    }, {
+        key: 'handleChangeLanguage',
+        value: function handleChangeLanguage(event) {
+            var content = _extends({}, this.state.editableContent);
+            content.Language = event.target.value.toUpperCase();
             this.setState({ editableContent: content });
         }
     }, {
@@ -34189,6 +34209,22 @@ var Content = function (_PureComponent) {
                                 _react2.default.createElement(_TextInput2.default, { type: 'text',
                                     value: editableContent.ContentCode, disabled: isLoading,
                                     onChange: this.handleChangeCode })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'tr',
+                            null,
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                'Language'
+                            ),
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                _react2.default.createElement(_TextInput2.default, { type: 'text',
+                                    value: editableContent.Language, disabled: isLoading,
+                                    onChange: this.handleChangeLanguage })
                             )
                         ),
                         _react2.default.createElement(
@@ -42794,6 +42830,7 @@ var Create = function (_PureComponent) {
                 NewPage: '',
                 ContentCode: '',
                 Content: '',
+                Language: '',
                 IsActive: 0
             },
             editorState: _draftJs.EditorState.createWithContent(_draftJs.ContentState.createFromBlockArray((0, _htmlToDraftjs2.default)(''))),
@@ -42804,6 +42841,7 @@ var Create = function (_PureComponent) {
         _this.handleChangePage = _this.handleChangePage.bind(_this);
         _this.handleChangeNewPage = _this.handleChangeNewPage.bind(_this);
         _this.handleChangeCode = _this.handleChangeCode.bind(_this);
+        _this.handleChangeLanguage = _this.handleChangeLanguage.bind(_this);
         _this.handleChangeStatus = _this.handleChangeStatus.bind(_this);
         _this.onEditorStateChange = _this.onEditorStateChange.bind(_this);
         _this.handleSave = _this.handleSave.bind(_this);
@@ -42829,6 +42867,13 @@ var Create = function (_PureComponent) {
         value: function handleChangeCode(event) {
             var content = _extends({}, this.state.editableContent);
             content.ContentCode = event.target.value;
+            this.setState({ editableContent: content });
+        }
+    }, {
+        key: 'handleChangeLanguage',
+        value: function handleChangeLanguage(event) {
+            var content = _extends({}, this.state.editableContent);
+            content.Language = event.target.value.toUpperCase();
             this.setState({ editableContent: content });
         }
     }, {
@@ -42976,6 +43021,22 @@ var Create = function (_PureComponent) {
                                 _react2.default.createElement(_TextInput2.default, { type: 'text',
                                     value: editableContent.ContentCode, disabled: isLoading,
                                     onChange: this.handleChangeCode })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'tr',
+                            null,
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                'Language'
+                            ),
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                _react2.default.createElement(_TextInput2.default, { type: 'text',
+                                    value: editableContent.Language, disabled: isLoading,
+                                    onChange: this.handleChangeLanguage })
                             )
                         ),
                         _react2.default.createElement(

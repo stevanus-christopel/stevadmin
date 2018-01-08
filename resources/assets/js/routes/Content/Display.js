@@ -27,6 +27,7 @@ class Content extends PureComponent {
 
         this.handleChangePage = this.handleChangePage.bind(this);
         this.handleChangeCode = this.handleChangeCode.bind(this);
+        this.handleChangeLanguage = this.handleChangeLanguage.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
         this.onEditorStateChange = this.onEditorStateChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
@@ -42,6 +43,11 @@ class Content extends PureComponent {
     handleChangeCode(event) {
         let content = {...this.state.editableContent};
         content.ContentCode = event.target.value;
+        this.setState({editableContent: content});
+    }
+    handleChangeLanguage(event) {
+        let content = {...this.state.editableContent};
+        content.Language = event.target.value.toUpperCase();
         this.setState({editableContent: content});
     }
     handleChangeStatus(event) {
@@ -127,6 +133,14 @@ class Content extends PureComponent {
                                 <TextInput type="text"
                                 value={editableContent.ContentCode} disabled={isLoading}
                                 onChange={this.handleChangeCode} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Language</td>
+                            <td>
+                                <TextInput type="text"
+                                value={editableContent.Language} disabled={isLoading}
+                                onChange={this.handleChangeLanguage} />
                             </td>
                         </tr>
                         <tr>

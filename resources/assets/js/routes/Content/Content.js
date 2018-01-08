@@ -33,6 +33,7 @@ class Content extends PureComponent {
         this.handleChangePage = this.handleChangePage.bind(this);
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
         this.handleKeyPressSearch = this.handleKeyPressSearch.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleDisplay = this.handleDisplay.bind(this);
         this.handleCreate = this.handleCreate.bind(this);
@@ -95,6 +96,10 @@ class Content extends PureComponent {
         if(event.key == 'Enter'){
             this.handleSearch();
         }
+    }
+    handleSearch() {
+        this.setState({contentPage: 1},
+            this.fetchContents);
     }
     handleDelete(content) {
         if(confirm(`Do you want to delete "${content.Page} - ${content.ContentCode}" ?`)) {
@@ -168,7 +173,7 @@ class Content extends PureComponent {
                                 onChange={this.handleChangeSearch}
                                 onKeyPress={this.handleKeyPressSearch} />
                             <div className="content__filter-button">
-                                <Button primary medium onClick={this.fetchContents} 
+                                <Button primary medium onClick={this.handleSearch} 
                                 disabled={isLoading}>Search</Button>
                                 <Button medium onClick={this.handleCreate} 
                                 disabled={isLoading}>Add New Content</Button>
@@ -181,6 +186,7 @@ class Content extends PureComponent {
                                         <div key={index} className="content__data-item">
                                             <div>
                                                 <p><b>{ content.Page }</b> - { content.ContentCode }</p>
+                                                <p>Language: { content.Language }</p>
                                                 <p>Status: { content.IsActive === 1 ? "Active" : <span>Not Active</span> }</p>
                                                 <p>Last updated by { content.UpdatedBy } at { content.UpdatedAt }</p>
                                             </div>
