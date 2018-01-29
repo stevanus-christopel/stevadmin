@@ -24,6 +24,7 @@ class ContentsController extends Controller
         where(function($query) use ($search){
             $query->where('ContentCode', 'LIKE', '%'.$search.'%');
             $query->orWhere('Page', 'LIKE', '%'.$search.'%');
+            $query->orWhere('Title', 'LIKE', '%'.$search.'%');
             $query->orWhere('Content', 'LIKE', '%'.$search.'%');
             $query->orWhere('Language', 'LIKE', '%'.$search.'%');
         })->count();
@@ -36,6 +37,7 @@ class ContentsController extends Controller
         where(function($query) use ($search){
             $query->where('ContentCode', 'LIKE', '%'.$search.'%');
             $query->orWhere('Page', 'LIKE', '%'.$search.'%');
+            $query->orWhere('Title', 'LIKE', '%'.$search.'%');
             $query->orWhere('Content', 'LIKE', '%'.$search.'%');
             $query->orWhere('Language', 'LIKE', '%'.$search.'%');
         })->
@@ -50,6 +52,7 @@ class ContentsController extends Controller
         $this->validate($request, [
             'ContentCode' => 'required|unique:STV_Contents|max:255',
             'Page' => 'required',
+            'Title' => 'required',
             'Content' => 'required',
             'Language' => 'required',
             'IsActive' => 'required',

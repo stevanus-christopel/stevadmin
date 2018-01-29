@@ -29,6 +29,7 @@ class Content extends PureComponent {
         this.handleChangeCode = this.handleChangeCode.bind(this);
         this.handleChangeLanguage = this.handleChangeLanguage.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
+        this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.onEditorStateChange = this.onEditorStateChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
     }
@@ -55,6 +56,11 @@ class Content extends PureComponent {
         content.IsActive = event.target.value;
         this.setState({editableContent: content});
     }
+    handleChangeTitle(event) {
+        let content = {...this.state.editableContent};
+        content.Title = event.target.value.toUpperCase();
+        this.setState({editableContent: content});
+    }
     onEditorStateChange(editorState){
         let content = {...this.state.editableContent};
         content.Content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -67,6 +73,8 @@ class Content extends PureComponent {
         let { editableContent } = this.state;
         if(editableContent.ContentCode.length === 0) {
             this.setState({error: 'Please enter Code.'});
+        } else if(editableContent.Title.length === 0) {
+            this.setState({error: 'Please enter Title.'});
         } else if(editableContent.Content.length === 0) {
             this.setState({error: 'Please enter Content.'});
         } else {
@@ -160,6 +168,14 @@ class Content extends PureComponent {
                         <tr>
                             <td>Last updated by</td>
                             <td>{ content.UpdatedBy } at { content.UpdatedAt }</td>
+                        </tr>
+                        <tr>
+                            <td>Title</td>
+                            <td>
+                                <TextInput type="text"
+                                value={editableContent.Title} disabled={isLoading}
+                                onChange={this.handleChangeTitle} />
+                            </td>
                         </tr>
                         <tr>
                             <td>Content</td>

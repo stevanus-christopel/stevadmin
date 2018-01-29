@@ -34054,6 +34054,7 @@ var Content = function (_PureComponent) {
         _this.handleChangeCode = _this.handleChangeCode.bind(_this);
         _this.handleChangeLanguage = _this.handleChangeLanguage.bind(_this);
         _this.handleChangeStatus = _this.handleChangeStatus.bind(_this);
+        _this.handleChangeTitle = _this.handleChangeTitle.bind(_this);
         _this.onEditorStateChange = _this.onEditorStateChange.bind(_this);
         _this.handleSave = _this.handleSave.bind(_this);
         return _this;
@@ -34091,6 +34092,13 @@ var Content = function (_PureComponent) {
             this.setState({ editableContent: content });
         }
     }, {
+        key: 'handleChangeTitle',
+        value: function handleChangeTitle(event) {
+            var content = _extends({}, this.state.editableContent);
+            content.Title = event.target.value.toUpperCase();
+            this.setState({ editableContent: content });
+        }
+    }, {
         key: 'onEditorStateChange',
         value: function onEditorStateChange(editorState) {
             var content = _extends({}, this.state.editableContent);
@@ -34109,6 +34117,8 @@ var Content = function (_PureComponent) {
 
             if (editableContent.ContentCode.length === 0) {
                 this.setState({ error: 'Please enter Code.' });
+            } else if (editableContent.Title.length === 0) {
+                this.setState({ error: 'Please enter Title.' });
             } else if (editableContent.Content.length === 0) {
                 this.setState({ error: 'Please enter Content.' });
             } else {
@@ -34272,6 +34282,22 @@ var Content = function (_PureComponent) {
                                 content.UpdatedBy,
                                 ' at ',
                                 content.UpdatedAt
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'tr',
+                            null,
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                'Title'
+                            ),
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                _react2.default.createElement(_TextInput2.default, { type: 'text',
+                                    value: editableContent.Title, disabled: isLoading,
+                                    onChange: this.handleChangeTitle })
                             )
                         ),
                         _react2.default.createElement(
@@ -42829,6 +42855,7 @@ var Create = function (_PureComponent) {
                 Page: props.pageItems[0].value,
                 NewPage: '',
                 ContentCode: '',
+                Title: '',
                 Content: '',
                 Language: '',
                 IsActive: 0
@@ -42843,6 +42870,7 @@ var Create = function (_PureComponent) {
         _this.handleChangeCode = _this.handleChangeCode.bind(_this);
         _this.handleChangeLanguage = _this.handleChangeLanguage.bind(_this);
         _this.handleChangeStatus = _this.handleChangeStatus.bind(_this);
+        _this.handleChangeTitle = _this.handleChangeTitle.bind(_this);
         _this.onEditorStateChange = _this.onEditorStateChange.bind(_this);
         _this.handleSave = _this.handleSave.bind(_this);
         return _this;
@@ -42884,6 +42912,13 @@ var Create = function (_PureComponent) {
             this.setState({ editableContent: content });
         }
     }, {
+        key: 'handleChangeTitle',
+        value: function handleChangeTitle(event) {
+            var content = _extends({}, this.state.editableContent);
+            content.Title = event.target.value.toUpperCase();
+            this.setState({ editableContent: content });
+        }
+    }, {
         key: 'onEditorStateChange',
         value: function onEditorStateChange(editorState) {
             var content = _extends({}, this.state.editableContent);
@@ -42902,6 +42937,8 @@ var Create = function (_PureComponent) {
 
             if (editableContent.ContentCode.length === 0) {
                 this.setState({ error: 'Please enter Code.' });
+            } else if (editableContent.Title.length === 0) {
+                this.setState({ error: 'Please enter Title.' });
             } else if (editableContent.Content.length === 0) {
                 this.setState({ error: 'Please enter Content.' });
             } else {
@@ -43053,6 +43090,22 @@ var Create = function (_PureComponent) {
                                 _react2.default.createElement(_Select2.default, { items: [{ name: "Active", value: 1 }, { name: "Not Active", value: 0 }],
                                     value: editableContent.IsActive, disabled: isLoading,
                                     onChange: this.handleChangeStatus })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'tr',
+                            null,
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                'Title'
+                            ),
+                            _react2.default.createElement(
+                                'td',
+                                null,
+                                _react2.default.createElement(_TextInput2.default, { type: 'text',
+                                    value: editableContent.Title, disabled: isLoading,
+                                    onChange: this.handleChangeTitle })
                             )
                         ),
                         _react2.default.createElement(
