@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 //  Routes
-import Login from '../Login';
 import Content from '../Content';
+import Login from '../Login';
 
 class Home extends PureComponent {
     constructor(props) {

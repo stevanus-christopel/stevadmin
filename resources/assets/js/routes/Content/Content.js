@@ -162,7 +162,7 @@ class Content extends PureComponent {
                         onSave={this.fetchContents}
                         onCancel={this.handleCancel} /> :
                     <div>
-                        <h2>Content List</h2>
+                        <h2>Contents</h2>
                         <div className="content__filter">
                             <Select items={
                                 [{ name: 'All Pages', value: '' },

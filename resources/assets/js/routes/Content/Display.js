@@ -30,6 +30,7 @@ class Content extends PureComponent {
         this.handleChangeLanguage = this.handleChangeLanguage.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
+        this.handleChangeMedia = this.handleChangeMedia.bind(this);
         this.onEditorStateChange = this.onEditorStateChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
     }
@@ -61,6 +62,11 @@ class Content extends PureComponent {
         content.Title = event.target.value.toUpperCase();
         this.setState({editableContent: content});
     }
+    handleChangeMedia(event) {
+        let content = {...this.state.editableContent};
+        content.Media = event.target.value;
+        this.setState({editableContent: content});
+    }
     onEditorStateChange(editorState){
         let content = {...this.state.editableContent};
         content.Content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -75,6 +81,8 @@ class Content extends PureComponent {
             this.setState({error: 'Please enter Code.'});
         } else if(editableContent.Title.length === 0) {
             this.setState({error: 'Please enter Title.'});
+        } else if(editableContent.Media.length === 0) {
+            this.setState({error: 'Please enter Media.'});
         } else if(editableContent.Content.length === 0) {
             this.setState({error: 'Please enter Content.'});
         } else {
@@ -175,6 +183,14 @@ class Content extends PureComponent {
                                 <TextInput type="text"
                                 value={editableContent.Title} disabled={isLoading}
                                 onChange={this.handleChangeTitle} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Media</td>
+                            <td>
+                                <TextInput type="text"
+                                value={editableContent.Media} disabled={isLoading}
+                                onChange={this.handleChangeMedia} />
                             </td>
                         </tr>
                         <tr>

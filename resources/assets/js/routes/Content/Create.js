@@ -18,12 +18,13 @@ class Create extends PureComponent {
         this.state = {
             pageItems: props.pageItems,
             editableContent: {
-                Page: props.pageItems[0].value,
+                Page: props.pageItems.length > 0 ? props.pageItems[0].value : '',
                 NewPage: '',
                 ContentCode: '',
                 Title: '',
                 Content: '',
                 Language: '',
+                Media: '',
                 IsActive: 0
             },
             editorState: EditorState.createWithContent(
@@ -37,6 +38,7 @@ class Create extends PureComponent {
         this.handleChangeNewPage = this.handleChangeNewPage.bind(this);
         this.handleChangeCode = this.handleChangeCode.bind(this);
         this.handleChangeLanguage = this.handleChangeLanguage.bind(this);
+        this.handleChangeMedia = this.handleChangeMedia.bind(this);
         this.handleChangeStatus = this.handleChangeStatus.bind(this);
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.onEditorStateChange = this.onEditorStateChange.bind(this);
@@ -62,6 +64,11 @@ class Create extends PureComponent {
         content.Language = event.target.value.toUpperCase();
         this.setState({editableContent: content});
     }
+    handleChangeMedia(event) {
+        let content = {...this.state.editableContent};
+        content.Media = event.target.value;
+        this.setState({editableContent: content});
+    }
     handleChangeStatus(event) {
         let content = {...this.state.editableContent};
         content.IsActive = event.target.value;
@@ -82,10 +89,14 @@ class Create extends PureComponent {
     };
     handleSave() {
         let { editableContent } = this.state;
-        if(editableContent.ContentCode.length === 0) {
+        if(editableContent.Page.length === 0 && editableContent.NewPage.length === 0) {
+            this.setState({error: 'Please enter Page.'});
+        } else if(editableContent.ContentCode.length === 0) {
             this.setState({error: 'Please enter Code.'});
         } else if(editableContent.Title.length === 0) {
             this.setState({error: 'Please enter Title.'});
+        } else if(editableContent.Media.length === 0) {
+            this.setState({error: 'Please enter Media.'});
         }  else if(editableContent.Content.length === 0) {
             this.setState({error: 'Please enter Content.'});
         } else {
@@ -195,6 +206,14 @@ class Create extends PureComponent {
                                 <TextInput type="text"
                                 value={editableContent.Title} disabled={isLoading}
                                 onChange={this.handleChangeTitle} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Media</td>
+                            <td>
+                                <TextInput type="text"
+                                value={editableContent.Media} disabled={isLoading}
+                                onChange={this.handleChangeMedia} />
                             </td>
                         </tr>
                         <tr>

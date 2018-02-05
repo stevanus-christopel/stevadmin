@@ -8,6 +8,7 @@
     color: $tundora;
     border: none;
     border-bottom: 1px solid $alto;
+    background-color: transparent;
 
     &::placeholder {
         opacity: 0.56;

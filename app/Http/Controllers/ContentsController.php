@@ -27,6 +27,7 @@ class ContentsController extends Controller
             $query->orWhere('Title', 'LIKE', '%'.$search.'%');
             $query->orWhere('Content', 'LIKE', '%'.$search.'%');
             $query->orWhere('Language', 'LIKE', '%'.$search.'%');
+            $query->orWhere('Media', 'LIKE', '%'.$search.'%');
         })->count();
 
         if($contentPage * $dataPerPage > $Count) {
@@ -40,6 +41,7 @@ class ContentsController extends Controller
             $query->orWhere('Title', 'LIKE', '%'.$search.'%');
             $query->orWhere('Content', 'LIKE', '%'.$search.'%');
             $query->orWhere('Language', 'LIKE', '%'.$search.'%');
+            $query->orWhere('Media', 'LIKE', '%'.$search.'%');
         })->
         skip(($contentPage * $dataPerPage))->limit($dataPerPage)->
         orderBy('page', 'asc')->get();
@@ -55,6 +57,7 @@ class ContentsController extends Controller
             'Title' => 'required',
             'Content' => 'required',
             'Language' => 'required',
+            'Media' => 'required',
             'IsActive' => 'required',
             'CreatedAt' => 'required',
             'CreatedBy' => 'required',
