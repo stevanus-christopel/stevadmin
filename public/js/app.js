@@ -6724,16 +6724,6 @@ module.exports = ReactComponentTreeHook;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = __webpack_require__(171);
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /**
  * Copyright (c) 2016-present, Facebook, Inc.
  *
@@ -6757,7 +6747,7 @@ if (true) {
 module.exports = { debugTool: debugTool };
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6780,6 +6770,16 @@ var nullthrows = function nullthrows(x) {
 };
 
 module.exports = nullthrows;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(171);
+
 
 /***/ }),
 /* 15 */
@@ -8973,7 +8973,7 @@ module.exports = reactProdInvariant;
 
 
 var ReactRef = __webpack_require__(179);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 
 var warning = __webpack_require__(1);
 
@@ -12570,7 +12570,7 @@ module.exports = getEventModifierState;
 var DOMLazyTree = __webpack_require__(30);
 var Danger = __webpack_require__(190);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(67);
 var setInnerHTML = __webpack_require__(45);
@@ -13224,7 +13224,7 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(16);
 var ReactInstanceMap = __webpack_require__(35);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(17);
 
 var invariant = __webpack_require__(0);
@@ -16881,7 +16881,7 @@ module.exports = memoizeStringOnly;
 
 var DOMProperty = __webpack_require__(22);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 
 var quoteAttributeValueForBrowser = __webpack_require__(200);
 var warning = __webpack_require__(1);
@@ -18058,7 +18058,7 @@ var ReactDOMContainerInfo = __webpack_require__(240);
 var ReactDOMFeatureFlags = __webpack_require__(241);
 var ReactFeatureFlags = __webpack_require__(102);
 var ReactInstanceMap = __webpack_require__(35);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 var ReactMarkupChecksum = __webpack_require__(242);
 var ReactReconciler = __webpack_require__(29);
 var ReactUpdateQueue = __webpack_require__(73);
@@ -19275,7 +19275,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var DraftEditorLeaf = __webpack_require__(274);
 var DraftOffsetKey = __webpack_require__(55);
 var React = __webpack_require__(7);
-var ReactDOM = __webpack_require__(12);
+var ReactDOM = __webpack_require__(14);
 var Scroll = __webpack_require__(136);
 var Style = __webpack_require__(82);
 var UnicodeBidi = __webpack_require__(132);
@@ -19286,7 +19286,7 @@ var getElementPosition = __webpack_require__(284);
 var getScrollPosition = __webpack_require__(83);
 var getViewportDimensions = __webpack_require__(287);
 var invariant = __webpack_require__(0);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 var SCROLL_BUFFER = 10;
 
@@ -19929,7 +19929,7 @@ module.exports = getTextContentFromFiles;
 
 var DraftOffsetKey = __webpack_require__(55);
 
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 function getUpdatedSelectionState(editorState, anchorKey, anchorOffset, focusKey, focusOffset) {
   var selection = nullthrows(editorState.getSelection());
@@ -20115,7 +20115,7 @@ var findAncestorOffsetKey = __webpack_require__(84);
 var getSelectionOffsetKeyForNode = __webpack_require__(138);
 var getUpdatedSelectionState = __webpack_require__(140);
 var invariant = __webpack_require__(0);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 /**
  * Convert the current selection range to an anchor/focus pair of offset keys
@@ -20417,7 +20417,7 @@ var URI = __webpack_require__(319);
 var generateRandomKey = __webpack_require__(18);
 var getSafeBodyFromHTML = __webpack_require__(147);
 var invariant = __webpack_require__(0);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 var sanitizeDraftText = __webpack_require__(77);
 
 var List = Immutable.List,
@@ -20972,7 +20972,7 @@ var EditorState = __webpack_require__(5);
 var SelectionState = __webpack_require__(37);
 
 var adjustBlockDepthForContentState = __webpack_require__(320);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 var RichTextEditorUtil = {
   currentBlockContainsLink: function currentBlockContainsLink(editorState) {
@@ -21481,7 +21481,7 @@ if(false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(156);
-module.exports = __webpack_require__(346);
+module.exports = __webpack_require__(344);
 
 
 /***/ }),
@@ -21495,7 +21495,7 @@ var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(12);
+var _reactDom = __webpack_require__(14);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -23531,7 +23531,7 @@ if (true) {
 }
 
 if (true) {
-  var ReactInstrumentation = __webpack_require__(13);
+  var ReactInstrumentation = __webpack_require__(12);
   var ReactDOMUnknownPropertyHook = __webpack_require__(247);
   var ReactDOMNullInputValuePropHook = __webpack_require__(248);
   var ReactDOMInvalidARIAHook = __webpack_require__(249);
@@ -25986,7 +25986,7 @@ var ReactDOMInput = __webpack_require__(203);
 var ReactDOMOption = __webpack_require__(204);
 var ReactDOMSelect = __webpack_require__(115);
 var ReactDOMTextarea = __webpack_require__(205);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 var ReactMultiChild = __webpack_require__(206);
 var ReactServerRenderingTransaction = __webpack_require__(215);
 
@@ -27012,7 +27012,7 @@ module.exports = AutoFocusUtils;
 
 var CSSProperty = __webpack_require__(109);
 var ExecutionEnvironment = __webpack_require__(8);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 
 var camelizeStyleName = __webpack_require__(197);
 var dangerousStyleValue = __webpack_require__(198);
@@ -28145,7 +28145,7 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactComponentEnvironment = __webpack_require__(69);
 var ReactInstanceMap = __webpack_require__(35);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 
 var ReactCurrentOwner = __webpack_require__(16);
 var ReactReconciler = __webpack_require__(29);
@@ -28755,7 +28755,7 @@ var ReactComponentEnvironment = __webpack_require__(69);
 var ReactCurrentOwner = __webpack_require__(16);
 var ReactErrorUtils = __webpack_require__(61);
 var ReactInstanceMap = __webpack_require__(35);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 var ReactNodeTypes = __webpack_require__(117);
 var ReactReconciler = __webpack_require__(29);
 
@@ -29944,7 +29944,7 @@ var _assign = __webpack_require__(2);
 
 var PooledClass = __webpack_require__(24);
 var Transaction = __webpack_require__(43);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 var ReactServerUpdateQueue = __webpack_require__(216);
 
 /**
@@ -30814,7 +30814,7 @@ var CallbackQueue = __webpack_require__(101);
 var PooledClass = __webpack_require__(24);
 var ReactBrowserEventEmitter = __webpack_require__(47);
 var ReactInputSelection = __webpack_require__(123);
-var ReactInstrumentation = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(12);
 var Transaction = __webpack_require__(43);
 var ReactUpdateQueue = __webpack_require__(73);
 
@@ -33085,7 +33085,7 @@ var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(12);
+var _reactDom = __webpack_require__(14);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -33234,7 +33234,7 @@ var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(12);
+var _reactDom = __webpack_require__(14);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -33620,7 +33620,7 @@ var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(12);
+var _reactDom = __webpack_require__(14);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -33723,7 +33723,7 @@ var Content = function (_PureComponent) {
         key: 'handleChangeTitle',
         value: function handleChangeTitle(event) {
             var content = _extends({}, this.state.editableContent);
-            content.Title = event.target.value.toUpperCase();
+            content.Title = event.target.value;
             this.setState({ editableContent: content });
         }
     }, {
@@ -35009,7 +35009,7 @@ module.exports = splitBlockInContentState;
 var Immutable = __webpack_require__(4);
 var UnicodeBidiService = __webpack_require__(268);
 
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 var OrderedMap = Immutable.OrderedMap;
 
@@ -35368,7 +35368,7 @@ var DraftEditorEditHandler = __webpack_require__(291);
 var DraftEditorPlaceholder = __webpack_require__(324);
 var EditorState = __webpack_require__(5);
 var React = __webpack_require__(7);
-var ReactDOM = __webpack_require__(12);
+var ReactDOM = __webpack_require__(14);
 var Scroll = __webpack_require__(136);
 var Style = __webpack_require__(82);
 var UserAgent = __webpack_require__(19);
@@ -35379,7 +35379,7 @@ var generateRandomKey = __webpack_require__(18);
 var getDefaultKeyBinding = __webpack_require__(149);
 var getScrollPosition = __webpack_require__(83);
 var invariant = __webpack_require__(0);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 var isIE = UserAgent.isBrowser('IE');
 
@@ -36018,7 +36018,7 @@ var React = __webpack_require__(7);
 
 var cx = __webpack_require__(38);
 var joinClasses = __webpack_require__(288);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 /**
  * `DraftEditorContents` is the container component for all block components
@@ -36272,7 +36272,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ContentBlock = __webpack_require__(25);
 var DraftEditorTextNode = __webpack_require__(275);
 var React = __webpack_require__(7);
-var ReactDOM = __webpack_require__(12);
+var ReactDOM = __webpack_require__(14);
 
 var invariant = __webpack_require__(0);
 var setDraftEditorSelection = __webpack_require__(281);
@@ -36441,7 +36441,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = __webpack_require__(7);
-var ReactDOM = __webpack_require__(12);
+var ReactDOM = __webpack_require__(14);
 var UserAgent = __webpack_require__(19);
 
 var invariant = __webpack_require__(0);
@@ -38741,7 +38741,7 @@ var findAncestorOffsetKey = __webpack_require__(84);
 var getTextContentFromFiles = __webpack_require__(139);
 var getUpdatedSelectionState = __webpack_require__(140);
 var isEventHandled = __webpack_require__(56);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 /**
  * Get a SelectionState for the supplied mouse event.
@@ -38942,7 +38942,7 @@ var UserAgent = __webpack_require__(19);
 var getEntityKeyForSelection = __webpack_require__(81);
 var isEventHandled = __webpack_require__(56);
 var isSelectionAtLeafStart = __webpack_require__(134);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 var setImmediate = __webpack_require__(293);
 
 // When nothing is focused, Firefox regards two characters, `'` and `/`, as
@@ -39647,7 +39647,7 @@ var EditorState = __webpack_require__(5);
 var UserAgent = __webpack_require__(19);
 
 var findAncestorOffsetKey = __webpack_require__(84);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 var isGecko = UserAgent.isEngine('Gecko');
 
@@ -39981,7 +39981,7 @@ var DraftModifier = __webpack_require__(10);
 var EditorState = __webpack_require__(5);
 
 var getContentStateFragment = __webpack_require__(53);
-var nullthrows = __webpack_require__(14);
+var nullthrows = __webpack_require__(13);
 
 var clipboard = null;
 
@@ -41128,7 +41128,7 @@ module.exports = splitTextIntoTextBlocks;
 
 
 var EditorState = __webpack_require__(5);
-var ReactDOM = __webpack_require__(12);
+var ReactDOM = __webpack_require__(14);
 
 var getDraftEditorSelection = __webpack_require__(323);
 var invariant = __webpack_require__(0);
@@ -42606,7 +42606,7 @@ var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(12);
+var _reactDom = __webpack_require__(14);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -42730,7 +42730,7 @@ var Create = function (_PureComponent) {
         key: 'handleChangeTitle',
         value: function handleChangeTitle(event) {
             var content = _extends({}, this.state.editableContent);
-            content.Title = event.target.value.toUpperCase();
+            content.Title = event.target.value;
             this.setState({ editableContent: content });
         }
     }, {
@@ -43033,7 +43033,7 @@ var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(12);
+var _reactDom = __webpack_require__(14);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -43218,9 +43218,7 @@ var Login = function (_PureComponent) {
 exports.default = Login;
 
 /***/ }),
-/* 344 */,
-/* 345 */,
-/* 346 */
+/* 344 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

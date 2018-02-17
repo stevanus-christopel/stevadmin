@@ -59,7 +59,7 @@ class Content extends PureComponent {
     }
     handleChangeTitle(event) {
         let content = {...this.state.editableContent};
-        content.Title = event.target.value.toUpperCase();
+        content.Title = event.target.value;
         this.setState({editableContent: content});
     }
     handleChangeMedia(event) {
